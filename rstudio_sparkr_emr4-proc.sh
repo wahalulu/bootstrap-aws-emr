@@ -125,7 +125,7 @@ while [ $# -gt 0 ]; do
 	shift
 done
 
-sudo yum install -y xorg-x11-xauth.x86_64 xorg-x11-server-utils.x86_64 xterm libXt libX11-devel libXt-devel libcurl-devel git
+sudo yum install -y xorg-x11-xauth.x86_64 xorg-x11-server-utils.x86_64 xterm libXt libX11-devel libXt-devel libcurl-devel
 
 export MAKE='make -j 8'
 
