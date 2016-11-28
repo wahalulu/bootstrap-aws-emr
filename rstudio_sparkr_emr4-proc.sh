@@ -55,8 +55,8 @@ SHINY=false
 REXAMPLES=true
 USER="hadoop"
 USERPW="hadoop"
-PLYRMR=false
-RHDFS=false
+PLYRMR=true
+RHDFS=true
 UPDATER=true
 LATEST_R=true
 RSTUDIOPORT=8787
@@ -195,7 +195,7 @@ if [ "$IS_MASTER" = true -a "$RSTUDIO" = true ]; then
   # install Rstudio server
   # please check and update for latest RStudio version
     
-  wget wget https://download2.rstudio.org/rstudio-server-rhel-1.0.44-x86_64.rpm
+  wget https://download2.rstudio.org/rstudio-server-rhel-1.0.44-x86_64.rpm
   sudo yum install --nogpgcheck rstudio-server-rhel-1.0.44-x86_64.rpm
   
   #wget https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.4.1.759-rh5-x86_64.rpm
