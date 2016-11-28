@@ -12,6 +12,8 @@ set -x -e
 # 2015-07-29 - Tom Zeng tomzeng@amazon.com, converted to AMI 4.0.0 compatible
 # 2016-01-15 - Tom Zeng tomzeng@amazon.com, converted to AMI 4.2.0 compatible and added shiny
 # 2016-10-07 - Tom Zeng tomzeng@amazon.com, added Sparklyr and improved install speed by 2-3x
+# 2016-11-28 - Marck Vaisman marck@vaisman.us, updated to latest RStudio version and added additional packages to be installed
+#                                               changed default flags
 ##############################
 
 
@@ -50,17 +52,17 @@ error_msg ()
 # get input parameters
 RSTUDIO=true
 SHINY=false
-REXAMPLES=false
+REXAMPLES=true
 USER="hadoop"
 USERPW="hadoop"
 PLYRMR=false
 RHDFS=false
 UPDATER=true
-LATEST_R=false
+LATEST_R=true
 RSTUDIOPORT=8787
-SPARKR=false
+SPARKR=true
 SPARKR_PKG=false
-SPARKLYR=false
+SPARKLYR=true
 while [ $# -gt 0 ]; do
 	case "$1" in
 		--sparklyr)
@@ -193,8 +195,8 @@ if [ "$IS_MASTER" = true -a "$RSTUDIO" = true ]; then
   # install Rstudio server
   # please check and update for latest RStudio version
     
-  wget https://download2.rstudio.org/rstudio-server-rhel-0.99.491-x86_64.rpm
-  sudo yum install --nogpgcheck -y rstudio-server-rhel-0.99.491-x86_64.rpm
+  wget wget https://download2.rstudio.org/rstudio-server-rhel-1.0.44-x86_64.rpm
+  sudo yum install --nogpgcheck rstudio-server-rhel-1.0.44-x86_64.rpm
   
   #wget https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.4.1.759-rh5-x86_64.rpm
   #sudo yum install --nogpgcheck -y shiny-server-1.4.1.759-rh5-x86_64.rpm
@@ -221,7 +223,7 @@ fi
 
 # install required packages
 sudo R --no-save << EOF
-install.packages(c('RJSONIO', 'itertools', 'digest', 'Rcpp', 'functional', 'httr', 'plyr', 'stringr', 'reshape2', 'caTools', 'rJava', 'devtools'),
+install.packages(c('RJSONIO', 'itertools', 'digest', 'Rcpp', 'functional', 'httr', 'plyr', 'stringr', 'reshape2', 'caTools', 'rJava', 'devtools', 'tidyverse'),
 repos="http://cran.rstudio.com")
 # here you can add your required packages which should be installed on ALL nodes
 # install.packages(c(''), repos="http://cran.rstudio.com", INSTALL_opts=c('--byte-compile') )
