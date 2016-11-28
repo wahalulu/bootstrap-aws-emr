@@ -18,6 +18,6 @@ set -x -e
 # --latestR - install latest R version, default false (build from source - caution, may cause problem with RStudio)
 
 sudo yum install -y git
-wget --no-check-certificate https://raw.githubusercontent.com/wahalulu/bootstrap-aws-emr/master/rstudio_sparkr_emr4-proc.sh
-sh ./rstudio_sparkr_emr4-proc.sh "$@" &
+wget --no-check-certificate https://raw.githubusercontent.com/wahalulu/bootstrap-aws-emr/master/rstudio-spark-rhadoop-bootstrap.sh
+sh ./rstudio-spark-rhadoop-bootstrap.sh "$@" &
 
