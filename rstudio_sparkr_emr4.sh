@@ -17,6 +17,7 @@ set -x -e
 # --no-updateR - don't update latest R version
 # --latestR - install latest R version, default false (build from source - caution, may cause problem with RStudio)
 
-aws s3 cp s3://awssupportdatasvcs.com/bootstrap-actions/rstudio-sparkr-emr4-proc/rstudio_sparkr_emr4-proc.sh .
+sudo yum install -y git
+wget --no-check-certificate https://raw.githubusercontent.com/wahalulu/bootstrap-aws-emr/master/rstudio_sparkr_emr4-proc.sh
 sh ./rstudio_sparkr_emr4-proc.sh "$@" &
 
